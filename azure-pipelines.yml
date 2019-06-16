@@ -17,14 +17,14 @@ steps:
    Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};${tools}";
   displayName: 'Set Packer Env Variable'
 
-- task: CopyFiles@2
-  displayName: 'Copy Files to: $(System.DefaultWorkingDirectory)'
-  inputs:
-    SourceFolder: \
+# - task: CopyFiles@2
+#   displayName: 'Copy Files to: $(System.DefaultWorkingDirectory)'
+#   inputs:
+#     SourceFolder: \
 
-    Contents: DSCConfiguration.ps1
+#     Contents: DSCConfiguration.ps1
 
-    TargetFolder: '$(System.DefaultWorkingDirectory)'
+#     TargetFolder: '$(System.DefaultWorkingDirectory)'
 
 
 - task: PackerBuild@1
