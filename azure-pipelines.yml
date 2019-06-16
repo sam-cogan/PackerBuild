@@ -5,10 +5,10 @@ queue:
 #Your build pipeline references a secret variable named ‘client_secret’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
 #Your build pipeline references an undefined variable named ‘managed_image_prefix’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 variables:
-  client_id: 'clientID'
-  tenant_id: 'tenantID'
+  client_id: 'aea8ddb0-111d-4194-8238-842f26e5642e'
+  tenant_id: '8f18eb27-4f87-4a88-b325-f8e6e7e43486'
   subscription_id: 'subID'
-  managed_image_resource_group_name: 'app1ResourceGroup'
+  managed_image_resource_group_name: '469048f1-92af-4c71-a63b-330ec31d2b82'
   PackageLocation: 'https://storageaccount.blob.core.windows.net/webapp/SampleApps.zip'
 steps:
 - powershell: |
