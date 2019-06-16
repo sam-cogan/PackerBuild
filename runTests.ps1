@@ -1,1 +1,1 @@
-Invoke-Pester C:/packages/Image.test.ps1 -OutputFile TestResults.xml -OutputFormat NUnitXml
+Invoke-Pester C:/packages/Image.test.ps1 -OutputFile TestResults.xml -OutputFormat NUnitXml -EnableExit
