@@ -76,7 +76,7 @@
     {
       "type": "powershell",
       "inline":[
-          "Invoke-Pester C:/packages/Image.test.ps1 -OutputFile TestResults.xml -OutputFormat NUnitXml -EnableExit"
+          "Invoke-Pester C:/packages/Image.test.ps1 -OutputFile TestResults.xml -OutputFormat NUnitXml"
       ]
     },
         {
@@ -85,6 +85,10 @@
         "destination": "TestResults.xml",
         "direction": "download"
         },
+       {
+      "type": "powershell",
+      "script": "./getTestResults.ps1"
+    },
     {
       "type": "powershell",
       "inline": [
