@@ -12,6 +12,11 @@ Describe "Feature Validation"{
         It "should have Web-Asp-Net45 Role Installed"{
             get-windowsfeature -name "Web-Asp-Net45" | should be $true
         }
+
+        It "should not have Web-Asp-Net45 Role Installed"{
+            get-windowsfeature -name "Web-Asp-Net45" | should be $false
+        }
+        
         
     }
 }
