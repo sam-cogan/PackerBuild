@@ -51,12 +51,19 @@
       "working_dir": "{{user `WorkingDirectory`}}",
       "install_modules": {
         "xPSDesiredStateConfiguration": "6.4.0.0",
-        "PackageManagement": "1.4.1",
-        "Pester": "4.8.1"
+        "PackageManagement": "1.4.1"
       },
       "configuration_params": {
         "-PackageLocation": "{{user `PackageLocation`}}"
       }
+    },
+    {
+        "type":"powershell",
+        "elevated_user": "Administrator",
+        "elevated_password": "{{.WinRMPassword}}",
+        "inline":[
+            "Install-Module -Name Pester -Force"
+        ]
     },
     {
       "type": "file",
@@ -65,14 +72,16 @@
     },
     {
       "type": "powershell",
-      "script": "./runTests.ps1"
+      "inline":[
+          "Invoke-Pester C:/packages/Image.test.ps1 -OutputFile TestResults.xml -OutputFormat NUnitXml -EnableExit"
+      ]
     },
-    {
-      "type": "file",
-      "source": "TestResults.xml",
-      "destination": "TestResults.xml",
-      "direction": "download"
-    },
+        {
+        "type": "file",
+        "source": "TestResults.xml",
+        "destination": "TestResults.xml",
+        "direction": "download"
+        },
     {
       "type": "powershell",
       "inline": [
