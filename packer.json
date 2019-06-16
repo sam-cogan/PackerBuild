@@ -60,7 +60,7 @@
     },
     {
       "type": "file",
-      "source": "./tests",
+      "source": "./tests/Image.test.ps1",
       "destination": "C:/packages"
     },
     {
