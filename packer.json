@@ -1,0 +1,66 @@
+{
+    "variables": {
+        "client_id": "",
+        "client_secret": "",
+        "tenant_id": "",
+        "subscription_id": "",
+        "managed_image_prefix": "",
+        "managed_image_resource_group_name": "",
+        "PackageLocation": "",
+        "WorkingDirectory": "{{env `System_DefaultWorkingDirectory`}}" 
+      },
+      
+    "builders": [
+        {
+            "type": "azure-arm",
+            "client_id": "{{user `client_id`}}",
+            "client_secret": "{{user `client_secret`}}",
+            "tenant_id": "{{user `tenant_id`}}",
+            "subscription_id": "{{user `subscription_id`}}",
+            "managed_image_name": "{{user `managed_image_prefix`}}-{{isotime \"200601020304\"}}",
+            "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
+            "os_type": "Windows",
+            "image_publisher": "MicrosoftWindowsServer",
+            "image_offer": "WindowsServer",
+            "image_sku": "2016-Datacenter",
+            "communicator": "winrm",
+            "winrm_use_ssl": "true",
+            "winrm_insecure": "true",
+            "winrm_timeout": "3m",
+            "winrm_username": "packer",
+            "location": "West Europe",
+            "vm_size": "Standard_DS2",
+            "async_resourcegroup_delete":true
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "powershell",
+            "inline": [
+                "WINRM QuickConfig -q",
+                "Install-PackageProvider Nuget -ForceBootstrap -Force",
+                "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted"
+            ]
+        },
+        {
+            "type": "dsc",
+            "manifest_file": "DSCConfiguration.ps1",
+            "configuration_name": "webConfiguration",
+            "install_package_management": true,
+            "working_dir": "{{user `WorkingDirectory`}}",
+            "install_modules": {
+                "xPSDesiredStateConfiguration": "6.4.0.0"
+            },
+            "configuration_params": {
+                "-PackageLocation": "{{user `PackageLocation`}}"
+            }
+        },
+        {
+            "type": "powershell",
+            "inline": [
+                "if( Test-Path $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\windows\\system32\\Sysprep\\unattend.xml -Force}",
+                "& $Env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /shutdown /quiet"
+            ]
+        }
+    ]
+}
