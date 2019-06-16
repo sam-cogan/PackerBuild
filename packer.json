@@ -17,7 +17,7 @@
             "client_secret": "{{user `client_secret`}}",
             "tenant_id": "{{user `tenant_id`}}",
             "subscription_id": "{{user `subscription_id`}}",
-            "managed_image_name": "{{user `managed_image_prefix`}}-{{isotime \"200601020304\"}}",
+            "managed_image_name": "scimage-{{isotime \"200601020304\"}}",
             "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
             "os_type": "Windows",
             "image_publisher": "MicrosoftWindowsServer",
