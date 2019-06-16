@@ -12,7 +12,7 @@ variables:
   PackageLocation: 'https://storageaccount.blob.core.windows.net/webapp/SampleApps.zip'
 steps:
 - powershell: |
-   $tools="$env:build_sourcesdirectory\Packer"
+   $tools="$env:build_sourcesdirectory"
    Write-Host $tools
    Write-Host "##vso[task.setvariable variable=PATH;]${env:PATH};${tools}";
   displayName: 'Set Packer Env Variable'
