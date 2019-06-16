@@ -61,7 +61,7 @@
     {
       "type": "file",
       "source": "./tests/Image.test.ps1",
-      "destination": "C:/packages"
+      "destination": "C:/packages/"
     },
     {
       "type": "powershell",
