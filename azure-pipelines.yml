@@ -10,6 +10,7 @@ variables:
   subscription_id: 'subID'
   managed_image_resource_group_name: '469048f1-92af-4c71-a63b-330ec31d2b82'
   PackageLocation: 'https://storageaccount.blob.core.windows.net/webapp/SampleApps.zip'
+  managed_image_prefix": 'scimage'
 steps:
 - powershell: |
    $tools="$env:build_sourcesdirectory"
