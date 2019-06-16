@@ -45,5 +45,10 @@ steps:
     testResultsFiles: '**/TestResults.xml'
     condition: succeededOrFailed()
     
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/TestResults.xml'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 
