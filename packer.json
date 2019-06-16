@@ -61,7 +61,7 @@
     {
       "type": "file",
       "source": "./tests",
-      "destination": "C:/Windows/Temp"
+      "destination": "C:/packages"
     },
     {
       "type": "powershell",
