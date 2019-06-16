@@ -39,10 +39,17 @@
       "inline": [
         "WINRM QuickConfig -q",
         "Install-PackageProvider Nuget -ForceBootstrap -Force",
-        "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted",
-        "Install-Module -Name Pester -Force"
+        "Set-PSRepository -Name PSGallery -InstallationPolicy Trusted"
         
       ]
+    },
+        {
+        "type":"powershell",
+        "elevated_user": "packer",
+        "elevated_password": "{{.WinRMPassword}}",
+        "inline":[
+            "Install-Module -Name Pester -Force"
+        ]
     },
     {
       "type": "dsc",
